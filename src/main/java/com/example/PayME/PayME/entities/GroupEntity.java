@@ -31,5 +31,21 @@ public class GroupEntity {
         user.getGroups().add(this);
     }
 
+    @OneToMany(mappedBy = "group")
+    private List<ExpenseEntity> expenseEntities = new ArrayList<>();
+
+    public void addExpense(ExpenseEntity expense){
+        expenseEntities.add(expense);
+        expense.setGroup(this);
+    }
+
+    @OneToMany(mappedBy = "group" )
+    private List<DebtEntity> debtEntities = new ArrayList<>();
+
+    public void addDebt(DebtEntity debt){
+        debtEntities.add(debt);
+        debt.setGroup(this);
+    }
+
 
 }

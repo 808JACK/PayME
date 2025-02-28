@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,8 +24,26 @@ public class ExpenseEntity {
     @CreationTimestamp
     private LocalDateTime createdAt;
     private String description;
-    private Double amount;
+    private Long amount;
     private String status;
     private String splitRule;
     private String currency;
+
+    @ManyToOne
+    @JoinColumn(name = "payer_id") // Foreign key to users table
+    private UserEntity payer;
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private GroupEntity group;
+
+    @OneToMany(mappedBy = "expense")
+    private List<DebtEntity> debts = new ArrayList<>();
+
+    public void addDebt(DebtEntity debt){
+        debts.add(debt);
+        debt.setExpense(this);
+    }
+
+
 }

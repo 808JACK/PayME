@@ -34,4 +34,29 @@ public class UserEntity {
         groups.add(group);
         group.getUsers().add(this);
     }
+
+
+    @OneToMany(mappedBy = "payer")
+    private List<ExpenseEntity> expenses = new ArrayList<>();
+
+    public void addExpenses(ExpenseEntity expense){
+        expenses.add(expense);
+        expense.setPayer(this);
+    }
+
+    @OneToMany(mappedBy = "debtor")
+    private  List<DebtEntity> debt_owned = new ArrayList<>();
+
+    @OneToMany(mappedBy = "creditor")
+    private List<DebtEntity> debt_owning = new ArrayList<>();
+
+    public void addDebt(DebtEntity debt){
+        debt_owned.add(debt);
+        debt.setDebtor(this);
+    }
+
+    private void addCredit(DebtEntity credit){
+        debt_owning.add(credit);
+        credit.setCreditor(this);
+    }
 }
