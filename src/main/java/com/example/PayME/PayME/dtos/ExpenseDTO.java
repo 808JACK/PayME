@@ -18,4 +18,6 @@ public class ExpenseDTO {
     private String status;
     private String splitRule;
     private String currency;
+    private Long groupId;
+    private Long payerId;
 }

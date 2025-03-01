@@ -24,7 +24,7 @@ public class ExpenseEntity {
     @CreationTimestamp
     private LocalDateTime createdAt;
     private String description;
-    private Long amount;
+    private Double amount;
     private String status;
     private String splitRule;
     private String currency;
@@ -43,6 +43,9 @@ public class ExpenseEntity {
     public void addDebt(DebtEntity debt){
         debts.add(debt);
         debt.setExpense(this);
+    }
+    public void setExpenseAmount(Double expenseAmount) {
+        this.amount = expenseAmount;  // Sets debt amount tied to expense
     }
 
 

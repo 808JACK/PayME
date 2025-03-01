@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.security.spec.ECPoint;
 import java.time.LocalDateTime;
 
 @Entity

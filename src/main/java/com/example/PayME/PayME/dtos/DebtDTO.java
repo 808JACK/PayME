@@ -16,4 +16,8 @@ public class DebtDTO {
     private Double amount;
     private LocalDateTime createdAt;
     private String status;
+    private Long debtorId;    // User who owes
+    private Long creditorId;  // User owed
+    private Long groupId;     // Group it’s tied to
+    private Long expenseId;
 }
