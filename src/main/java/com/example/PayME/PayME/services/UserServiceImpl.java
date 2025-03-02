@@ -2,6 +2,7 @@ package com.example.PayME.PayME.services;
 
 import com.example.PayME.PayME.dtos.UserDTO;
 import com.example.PayME.PayME.entities.UserEntity;
+import com.example.PayME.PayME.exceptions.ResourceNotFoundException;
 import com.example.PayME.PayME.repos.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -21,7 +22,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO findUserById(Long userId) {
-        return modelMapper.map(userRepo.findById(userId), UserDTO.class);
+        return modelMapper.map(userRepo.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User With this id is not found")), UserDTO.class);
     }
 
 

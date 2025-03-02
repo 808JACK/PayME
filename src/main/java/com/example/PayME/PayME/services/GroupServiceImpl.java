@@ -27,7 +27,8 @@ public class GroupServiceImpl implements GroupService{
 
     @Override
     public GroupDTO findGroupById(Long groupId) {
-        GroupEntity groupEntity = groupRepo.findById(groupId).orElse(null);
+        GroupEntity groupEntity = groupRepo.findById(groupId)
+                .orElseThrow(() -> new ResourceNotFoundException("group with this id not found"));
         return modelMapper.map(groupEntity, GroupDTO.class);
     }
 
